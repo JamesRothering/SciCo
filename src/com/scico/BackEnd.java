@@ -2,16 +2,21 @@ package com.scico;
 
 public class BackEnd {
 
-  private enum Singleton
-  {
-    private int aNextNum = 0;
+  private static enum Singleton
+  {;
+  
+    private static int aNextNum = 0;
     
-    public void getNextNum()
+    static public int getNextNum()
     {
       return aNextNum;
     }
-    
-  }
+    static public void setNextNum(int aNum)
+    {
+      aNextNum = aNum;
+    }
+  } 
+ 
   
 	public static void main(String[] args) 
 	{
@@ -20,6 +25,11 @@ public class BackEnd {
 	BackEnd(int aNum)
 	{
 	  //instantiate with an assumedly correct "next" number for SSCCEs
-	  Singleton.aNextNum = aNum;
+	  BackEnd.Singleton.setNextNum(aNum);
+	}
+	
+	public int getNextFileId()
+	{
+	  return BackEnd.Singleton.getNextNum();
 	}
 }

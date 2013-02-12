@@ -3,15 +3,15 @@ package com.scico;
 public class BackEnd {
 
   private static enum Singleton
-  {;
+  {INSTANCE;
   
-    private static int aNextNum = 0;
+    private int aNextNum = 0;
     
-    static public int getNextNum()
+    public int getNextNum()
     {
       return aNextNum;
     }
-    static public void setNextNum(int aNum)
+    public void setNextNum(int aNum)
     {
       aNextNum = aNum;
     }
@@ -20,16 +20,19 @@ public class BackEnd {
   
 	public static void main(String[] args) 
 	{
+	  BackEnd aTest = new BackEnd(6);
+	  System.out.println("ran BackEnd from the command line");
+	
 	}
   
 	BackEnd(int aNum)
 	{
-	  //instantiate with an assumedly correct "next" number for SSCCEs
-	  BackEnd.Singleton.setNextNum(aNum);
+	  //instantiate with an assumed correct "next" number for SSCCEs
+	  BackEnd.Singleton.INSTANCE.setNextNum(aNum);
 	}
 	
 	public int getNextFileId()
 	{
-	  return BackEnd.Singleton.getNextNum();
+	  return BackEnd.Singleton.INSTANCE.getNextNum();
 	}
 }

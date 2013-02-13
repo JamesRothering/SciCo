@@ -1,3 +1,4 @@
+//BackEnd to create directories to store the new files
 package com.scico;
 
 public class BackEnd {

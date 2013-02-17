@@ -1,4 +1,3 @@
-//daily backup
 public class GenSeq
 {
   final String aSequence;
@@ -16,9 +15,8 @@ public class GenSeq
 
   public static void main(String[] argv)
   {
-    GenSeq aTest = new GenSeq("01");
-    System.out.println("sSeq was instantiated with the sequence " + aTest.aSequence);
-    System.out.println("got back ==> " + aTest.getNextInSeq("110") );
+    GenSeq.testCase("01", "110");
+    GenSeq.testCase("01", "111");
   }
 
   public String getNextInSeq(String aInput)
@@ -40,12 +38,43 @@ public class GenSeq
       }//end-if-then-clause
       else
       {
-        sReturn[i] = sSeq[i-1]; //put the next in sequence into return value
+//System.out.println("at the i=" + i);
+        sReturn[i] = getNextDigit(sWorking[i],
+                                  this.sSeq); //put the next in sequence into return value
+        while (i>0)
+        {
+//System.out.println("sReturn.length=" + sReturn.length);
+          i--;                     //copy over the remaining leading digits
+          sReturn[i] = sWorking[i];
+        }
       }                         // but remember we're going in REVERSE order, so we decrement.
     }//end-for
 
 //TODO: FIX
-    return (new String(sWorking));
+    return (new String(sReturn));
   }
 
+  public char getNextDigit(char aChar, char[] sChar) 
+  {
+    for (int i = 0, j=sChar.length; i < sChar.length; i++,j--)
+    {
+      if (aChar == sChar[i])
+      {
+//        System.out.println("returning next in sequence of: " + sChar[j-1]);
+        return sChar[j-1];
+      }
+    }
+    return (char) -1;  //should never hit this, only if there is no match
+  }
+
+  static public void testCase(String aSeq,   //The sequence to use
+                              String aInput) //The value to increment from
+  {
+    GenSeq aTest = new GenSeq(aSeq);
+
+    System.out.println("Using sequence:  " + aSeq);
+    System.out.println("Starting value:  " + aInput);
+    System.out.println("got back =====>  " + aTest.getNextInSeq(aInput) ); 
+    System.out.println("-------------------------------------------------");
+  }
 }

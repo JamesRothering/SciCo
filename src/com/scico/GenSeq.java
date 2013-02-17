@@ -15,14 +15,23 @@ public class GenSeq
 
   public static void main(String[] argv)
   {
+    GenSeq.testCase("01", "");
+    GenSeq.testCase("01", "1");
+    GenSeq.testCase("01", "10");
     GenSeq.testCase("01", "110");
     GenSeq.testCase("01", "111");
+    GenSeq.testCase("01", "1000");
+    GenSeq.testCase("01", "1001");
+    GenSeq.testCase("01", "1010");
+    GenSeq.testCase("01", "1011");
   }
 
   public String getNextInSeq(String aInput)
   {
     char[] sWorking = aInput.toCharArray();
     char[] sReturn  = new char[sWorking.length];
+    if(aInput.equals(""))
+      return (Character.toString(aMinValue));
     boolean isToBeBumpedUp = true; //this digit needs incrementing
     for (int i = sWorking.length-1; i >= 0; i--)
     {

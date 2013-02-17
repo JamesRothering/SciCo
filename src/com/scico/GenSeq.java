@@ -22,36 +22,44 @@ public class GenSeq
   public String getNextInSeq(String aInput)
   {
     char[] sWorking = aInput.toCharArray();
-    char[] sReturn  = new char[sWorking.length+1]; //need extra char to bump up as MSD
+    char[] sReturn  = new char[sWorking.length];
+    boolean isToBeBumpedUp = true; //this digit needs incrementing
     for (int i = sWorking.length-1; i >= 0; i--)
     {
-      if (sWorking[i] == aMaxValue)
+      if (isToBeBumpedUp)
       {
-        while (i >= 0 &&   //can't loop forever & we short circuit before using an invalid array value in the next test
-               sWorking[i] == aMaxValue 
-              )
+        //if at max value, reset to min value but leave flag to bump up next digit
+        //else set to next value & set isToBeBumpedUp false
+        if(sWorking[i] == aMaxValue)
         {
-          sReturn[i] = aMinValue;  //reset this one to the minimum value
-                                   // because the higher MSD will get incr.
-          i--; //remember to decrement, because of REVERSE order
+          sReturn[i] = aMinValue; 
         }
-      }//end-if-then-clause
-      else
+        else //set to the next value & set isToBeBumpedUp false
+        {
+          sReturn[i] = getNextDigit(sWorking[i],sSeq);
+          isToBeBumpedUp = false;
+        }
+      }
+      else //if not ToBeBumpedUp
       {
-//System.out.println("at the i=" + i);
-        sReturn[i] = getNextDigit(sWorking[i],
-                                  this.sSeq); //put the next in sequence into return value
-        while (i>0)
-        {
-//System.out.println("sReturn.length=" + sReturn.length);
-          i--;                     //copy over the remaining leading digits
-          sReturn[i] = sWorking[i];
-        }
-      }                         // but remember we're going in REVERSE order, so we decrement.
+        //just copy it
+        sReturn[i] = sWorking[i];
+      }
     }//end-for
-
-//TODO: FIX
-    return (new String(sReturn));
+    //if at the end of the for loop we still have isToBeBumpedUp==true
+    //then we need to slap on another MSD and set it to next value up from Min value
+    if (isToBeBumpedUp)
+    {
+       char[] sRetVal = new char[sReturn.length+1];
+       sRetVal[0] = getNextDigit(aMinValue,sSeq); //concat the char at the front
+       for (int i = 0; i < sReturn.length; i++)  //copy the rest
+       {
+         sRetVal[i+1] = sReturn[i];
+       }
+       //convert to String
+      return (new String(sRetVal));
+     }
+    return (new String(sReturn));   
   }
 
   public char getNextDigit(char aChar, char[] sChar) 

@@ -17,13 +17,24 @@ public class GenSeq
   {
     GenSeq.testCase("01", "");
     GenSeq.testCase("01", "1");
+    GenSeq.testCase("01", "00");
+    GenSeq.testCase("01", "01");
     GenSeq.testCase("01", "10");
+    GenSeq.testCase("01", "11");
+    GenSeq.testCase("01", "000");
     GenSeq.testCase("01", "110");
     GenSeq.testCase("01", "111");
     GenSeq.testCase("01", "1000");
     GenSeq.testCase("01", "1001");
     GenSeq.testCase("01", "1010");
     GenSeq.testCase("01", "1011");
+//
+//A different sequence tested
+    GenSeq.testCase("abcdefg","");
+    GenSeq.testCase("abcdefg","a");
+    GenSeq.testCase("abcdefg","b");
+    GenSeq.testCase("abcdefg","g");
+    GenSeq.testCase("abcdefg","gg");
   }
 
   public String getNextInSeq(String aInput)
@@ -60,7 +71,10 @@ public class GenSeq
     if (isToBeBumpedUp)
     {
        char[] sRetVal = new char[sReturn.length+1];
-       sRetVal[0] = getNextDigit(aMinValue,sSeq); //concat the char at the front
+       sRetVal[0] = aMinValue; //concat the char at the front
+       //note: aMinValue is still correct, even if it's a leading zero
+       //i.e., the sequence built off of "01" and given"11" should be followed by 000!
+       //don't be misled by binary math!!! These are sequences of symbols
        for (int i = 0; i < sReturn.length; i++)  //copy the rest
        {
          sRetVal[i+1] = sReturn[i];
@@ -77,8 +91,7 @@ public class GenSeq
     {
       if (aChar == sChar[i])
       {
-//        System.out.println("returning next in sequence of: " + sChar[j-1]);
-        return sChar[j-1];
+        return sChar[i+1];  
       }
     }
     return (char) -1;  //should never hit this, only if there is no match

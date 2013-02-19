@@ -1,9 +1,6 @@
 package com.scico;
 
-import java.io.*;
-
-public class BackEnd
-{
+public class BackEnd {
 
     private static enum Singleton
     {INSTANCE;
@@ -21,18 +18,14 @@ public class BackEnd
       }
     }
 
-    public void createDir(String aBase, String aName)
-    {
-      Boolean didWork = new File(aBase+aName).mkdirs();
-      System.out.println(didWork);
-    }
+
  
   
 	public static void main(String[] args) 
 	{
 	  BackEnd aTest = new BackEnd(6);
 	  System.out.println("ran BackEnd from the command line");
-          aTest.createDir("c:\\djr\\SciCo\\","k34");
+	
 	}
   
 	BackEnd(int aNum)

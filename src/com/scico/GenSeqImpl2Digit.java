@@ -5,6 +5,7 @@
 // just add in an MSD with the lowest value possible. If your sequence is "01"
 // this will not match binary counting, because you will go 0, 1, 00, 01, 10, 11,
 // 000. But in numbers, 0, 00, and 000 are all the same -- 0!
+package com.scico;
 class GenSeqImpl2Digit
 {
   GenSeqImpl2Digit MSD = null;  //start out without a more significant digit
@@ -19,6 +20,11 @@ class GenSeqImpl2Digit
  }
 
  public String getCurrentValue()
+ {
+   return Character.toString(this.currentValue);   
+ }
+ 
+ public String getFullCurrentValue()
  {
    if (this.MSD == null)
    {
@@ -38,64 +44,56 @@ class GenSeqImpl2Digit
    }
    else
    {
-     this.MSD.setToNextDigit(new String(sSequence));
+     this.MSD.setToNextDigit();
    }
- }
- public void setToNextDigit()
- {
-   setToNextDigit(Character.toString(currentValue));
  }
 
- public void setToNextDigit(String aDigit)
+
+ public void setToNextDigit()
  {
-   assert (aDigit.length() == 1); //this is just a digit
-   if (aDigit == "")
-   {//if were priming the sequence, the empty string should set to lowest value
-     this.currentValue = sSequence[0];
-   }
-   else
-   {
-     char aChar = aDigit.charAt(0);
+     
      for (int i =0; i<this.sSequence.length; i++)
      {
-       if (aChar == sSequence[i])
+       if (currentValue == sSequence[i])
        {
          if (i == sSequence.length-1)
          {//when the max sequence is reached, start over at beginning
            this.currentValue = sSequence[0];
            //and then bump up the more significant digit
            incrementMSD();
+           break;
          }
          else
          {//otherwise set this digit to the next value in the sequence
            this.currentValue = sSequence[i+1];
+           break;
          }
        }
      }
-   }
  
  }
 
  public static void main(String[] argv)
  {
-   testCase("01","");
-   testCase("01","0");
-   testCase("01","1");
-   testCase("abcdefg","a");
-   testCase("abcdefg","b");
-   testCase("abcdefg","c");
-   testCase("abcdefg","d");
-   testCase("abcdefg","e");
-   testCase("abcdefg","f");
-   testCase("abcdefg","g");
+   GenSeqImpl2Digit aTest = new GenSeqImpl2Digit("01");
+   aTest.setToNextDigit();
+   testCase(aTest);
+   testCase(aTest);
+   testCase(aTest);
+   
+   aTest = new GenSeqImpl2Digit("abcdefg");
+   testCase(aTest);
+   testCase(aTest);
+   testCase(aTest);
+   testCase(aTest);
+   testCase(aTest);
+   testCase(aTest);
+   testCase(aTest);
  }
 
- public static void testCase(String aSequence, String aStart)
+ public static void testCase(GenSeqImpl2Digit aTest)
  {
-   GenSeqImpl2Digit aTest = new GenSeqImpl2Digit(aSequence);
-   System.out.println("Using sequence:  " + aSequence);
-   System.out.println("Starting value:  " + aStart);
-   aTest.setToNextDigit(aStart);
+   aTest.setToNextDigit();
    System.out.println("Got back======>  " + aTest.getCurrentValue());
    System.out.println("--------------------------------------------------");
  }

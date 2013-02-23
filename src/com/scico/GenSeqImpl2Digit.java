@@ -32,7 +32,8 @@ class GenSeqImpl2Digit
    }
    else
    {
-      return (this.MSD.getCurrentValue() + Character.toString(this.currentValue) ); 
+     return (this.MSD.getCurrentValue() + Character.toString(this.currentValue) );
+       
    }
  }
 

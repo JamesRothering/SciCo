@@ -1,3 +1,4 @@
+//author: DJR
 public class GenSeqImpl1 implements GenSeq
 {
   final String aSequence;

@@ -1,3 +1,4 @@
+//author: DJR
 //Second implementation of the gen sequence algorithm
 package com.scico;
 public class GenSeqImpl2 implements GenSeq

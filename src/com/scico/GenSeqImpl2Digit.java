@@ -1,3 +1,4 @@
+//author: DJR
 //note to reader: sequences are different from numbers in that numbers
 // have implicit leading zeros which are not meaningful to make explicit
 // i.e., 13 and 013 are the same number. But 99 and 099 are different sequences.

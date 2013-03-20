@@ -1,3 +1,4 @@
+
 //Interface segregation
 interface GenSeq
 {

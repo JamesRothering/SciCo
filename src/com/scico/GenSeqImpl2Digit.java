@@ -1,4 +1,3 @@
-//
 //author: DJR
 //note to reader: sequences are different from numbers in that numbers
 // have implicit leading zeros which are not meaningful to make explicit

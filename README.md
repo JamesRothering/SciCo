@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 8d40b7f8087284060112d74753a3893f55a27e59
 ﻿SciCo
 =====
 
@@ -32,3 +36,12 @@ At present this is a solo endeavor. Please contact the author with desired featu
 5. Development Approach
 This is an agile development working off a product backlog, using Test Driven Development and a Continuous Integration environment. As new code is pushed to github, the website -- once it reaches alpha -- will reflect the latest features. 
  
+<<<<<<< HEAD
+=======
+=======
+SciCo
+=====
+
+SciCo Puts the Science back into Computer Science
+>>>>>>> fdd94ab2e1c29722cd3ab0efe522724b8583e961
+>>>>>>> 8d40b7f8087284060112d74753a3893f55a27e59

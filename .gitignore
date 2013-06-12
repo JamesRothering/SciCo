@@ -4,6 +4,7 @@
 *.jar
 *.war
 *.ear
+<<<<<<< HEAD
 
 # Eclipse Files #
 .project
@@ -12,3 +13,5 @@
 
 # Documentation lock/swap files #
 .~*
+=======
+>>>>>>> 8d40b7f8087284060112d74753a3893f55a27e59

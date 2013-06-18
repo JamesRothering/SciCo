@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //todo: use tdd to develop code to assign next sequence to file
 package com.scico;
 
